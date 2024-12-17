@@ -1,0 +1,54 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Listado</ion-title>
+    <ion-buttons slot ="start">
+      <ion-back-button defaultHref="principal"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+</ion-content> -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Listado de Aciertos</ion-title>
+    <ion-buttons slot ="start">
+      <ion-back-button defaultHref="principal"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="ion-padding">
+    <h2 class="subtitulo">Resumen de Pronósticos Cerrados</h2>
+    <p class="descripcion">
+      A continuación, se muestra el listado de usuarios con sus pronósticos y los resultados oficiales de los partidos.
+    </p>
+  </div>
+
+  <ion-list *ngIf="listado.length > 0; else noData">
+    <ion-item *ngFor="let item of listado">
+      <ion-label>
+        <h2>{{ item.nombre_usuario }}</h2>
+        <p>
+          <strong>Partido:</strong> {{ item.equipo_local }} vs {{ item.equipo_visitante }}
+        </p>
+        <p>
+          <strong>Resultado Oficial:</strong> {{ item.resultado_oficial }}
+        </p>
+        <p>
+          <strong>Pronóstico del Usuario:</strong> {{ item.pronostico_usuario }}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #noData>
+    <div class="ion-padding">
+      <p class="no-datos">No hay datos disponibles para mostrar.</p>
+    </div>
+  </ng-template>
+</ion-content>
+

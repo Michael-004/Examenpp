@@ -1,0 +1,42 @@
+.contenedor-ganador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .mensaje-error {
+    color: #ff3b30; /* Rojo para errores */
+    font-weight: bold;
+  }
+  
+  .icono-error {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #ff3b30;
+  }
+  
+  .cargando {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: #666;
+  }
+  
+  .cargando ion-spinner {
+    --spinner-color: #3880ff; /* Azul primario de Ionic */
+  }
+  
+  ion-card-title {
+    color: #10dc60; /* Verde para éxito */
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  ion-card-content p {
+    margin: 5px 0;
+  }
+  

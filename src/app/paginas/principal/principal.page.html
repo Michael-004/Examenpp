@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-title>Principal</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarSesion()">
+        <ion-icon name="log-in"></ion-icon>
+        Cerrar Sesión
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card color="light">
+    <ion-card-header>
+      <ion-card-title>Selecciona una Opción</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="button-container">
+        <ion-button *ngIf="puedeAcceder('partido')" expand="block" color="success" (click)="servG.irA('/partido')">
+          <ion-icon name="football" slot="start"></ion-icon>
+          Registrar Partido
+        </ion-button>
+        <ion-button *ngIf="puedeAcceder('pronostico')" expand="block" color="primary" (click)="servG.irA('/pronostico')">
+          <ion-icon name="people" slot="start"></ion-icon>
+          Registrar los pronósticos
+        </ion-button>
+        <ion-button *ngIf="puedeAcceder('resultado')" expand="block" color="secondary" (click)="servG.irA('/resultado')">
+          <ion-icon name="settings" slot="start"></ion-icon>
+          Registrar el resultado del partido
+        </ion-button>
+        <ion-button *ngIf="puedeAcceder('listado')" expand="block" color="tertiary" (click)="servG.irA('/listado')">
+          <ion-icon name="list" slot="start"></ion-icon>
+          Listado de personas que acertaron el pronóstico
+        </ion-button>
+        <ion-button *ngIf="puedeAcceder('ganador')" expand="block" color="warning" (click)="servG.irA('/ganador')">
+          <ion-icon name="star" slot="start"></ion-icon>
+          Presentar el ganador
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="secondary">
+    <ion-title>
+      <ion-label>Bienvenido, {{ nombreUsuario }}</ion-label>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

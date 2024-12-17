@@ -1,0 +1,78 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Pronósticos</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="principal"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngFor="let partido of partidos">
+      <ion-label>
+        <h2>{{ partido.equipo_uno }} vs {{ partido.equipo_dos }}</h2>
+        <p>{{ partido.fecha_par | date:'medium' }}</p>
+      </ion-label>
+      <ion-button (click)="seleccionarPartido(partido)">Pronosticar</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content> -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Pronósticos</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="principal"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Pantalla de lista de partidos -->
+  <ng-container *ngIf="estadoPantalla === 'lista'">
+    <ion-list>
+      <ion-item *ngFor="let partido of partidos">
+        <ion-label>
+          <h2>{{ partido.equipo_uno }} vs {{ partido.equipo_dos }}</h2>
+          <p>{{ partido.fecha_par | date:'medium' }}</p>
+        </ion-label>
+        <ion-button (click)="seleccionarPartido(partido)">Pronosticar</ion-button>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+
+  <!-- Pantalla de pronóstico -->
+  <ng-container *ngIf="estadoPantalla === 'pronostico'">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Pronóstico</ion-card-title>
+        <ion-card-subtitle>{{ partidoSeleccionado.equipo_uno }} vs {{ partidoSeleccionado.equipo_dos }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Pronóstico</ion-label>
+          <ion-select [(ngModel)]="idRes" placeholder="Selecciona una opción">
+            <ion-select-option value="1">Local</ion-select-option>
+            <ion-select-option value="2">Visitante</ion-select-option>
+            <ion-select-option value="3">Empate</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Aporte Económico</ion-label>
+          <ion-input [(ngModel)]="valor" type="number" placeholder="Ingresa el aporte"></ion-input>
+        </ion-item>
+        <div class="ion-margin-top">
+          <ion-button expand="block" (click)="registrarPronostico(idRes, valor)">
+            Registrar
+          </ion-button>
+          <ion-button expand="block" color="light" (click)="estadoPantalla = 'lista'">
+            Cancelar
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
+</ion-content>

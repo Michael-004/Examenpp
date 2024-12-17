@@ -1,0 +1,51 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Ganador</ion-title>
+    <ion-buttons slot ="start">
+      <ion-back-button defaultHref="principal"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+</ion-content>
+ -->
+
+ <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Ganador</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="principal"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="contenedor-ganador">
+    <div *ngIf="ganador; else noGanador">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>¡Felicidades al Ganador!</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p><strong>Nombre:</strong> {{ ganador.nombre_usuario }}</p>
+          <p><strong>Total Ganado:</strong> {{ ganador.total_ganado | currency:'USD' }}</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <ng-template #noGanador>
+      <div *ngIf="mensajeError; else cargando" class="mensaje-error">
+        <ion-icon name="alert-circle-outline" class="icono-error"></ion-icon>
+        <p>{{ mensajeError }}</p>
+      </div>
+      <ng-template #cargando>
+        <div class="cargando">
+          <ion-spinner name="crescent"></ion-spinner>
+          <p>Cargando datos...</p>
+        </div>
+      </ng-template>
+    </ng-template>
+  </div>
+</ion-content>

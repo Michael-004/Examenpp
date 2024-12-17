@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Registrar Partido</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/principal"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Información del Partido</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="registrarPartido()">
+        <ion-item>
+          <ion-label>Equipo Local</ion-label>
+          <ion-select [(ngModel)]="partido.eq_uno" name="eq_uno" placeholder="Seleccionar">
+            <ion-select-option *ngFor="let equipo of equipos" [value]="equipo.id_eq">
+              {{ equipo.nombre_eq }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Equipo Visitante</ion-label>
+          <ion-select [(ngModel)]="partido.eq_dos" name="eq_dos" placeholder="Seleccionar">
+            <ion-select-option *ngFor="let equipo of equipos" [value]="equipo.id_eq">
+              {{ equipo.nombre_eq }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Fecha del Partido</ion-label>
+          <ion-datetime [(ngModel)]="partido.fecha_par" name="fecha_par"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Estado del Partido</ion-label>
+          <ion-select [(ngModel)]="partido.estado_par" name="estado_par" placeholder="Seleccionar">
+            <ion-select-option value="activo">Activo</ion-select-option>
+            <ion-select-option value="cerrado">Cerrado</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-button expand="block" color="success" type="submit">
+          <ion-icon name="save" slot="start"></ion-icon>
+          Guardar Partido
+        </ion-button>
+      </form>
+
+      <!-- Botón para regresar a la página principal -->
+      <ion-button expand="block" color="secondary" (click)="volverAPrincipal()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+        Regresar
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Registrar Resultado</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="principal"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <ion-list>
+    <ion-item *ngFor="let partido of partidos">
+      <ion-label>
+        <h2>{{ partido.equipo_uno }} vs {{ partido.equipo_dos }}</h2>
+        <p>{{ partido.fecha_par | date: 'medium' }}</p>
+      </ion-label>
+      <ion-button (click)="seleccionarPartido(partido)">Seleccionar</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="partidoSeleccionado">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Actualizar Resultado</ion-card-title>
+        <ion-card-subtitle>{{ partidoSeleccionado.equipo_uno }} vs {{ partidoSeleccionado.equipo_dos }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Resultado</ion-label>
+          <ion-select [(ngModel)]="idRes" placeholder="Selecciona una opción">
+            <ion-select-option value="1">Local</ion-select-option>
+            <ion-select-option value="2">Visitante</ion-select-option>
+            <ion-select-option value="3">Empate</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-button expand="block" (click)="registrarResultado()">
+          Guardar
+        </ion-button>
+        <ion-button expand="block" color="light" (click)="cancelarSeleccion()">
+          Cancelar
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>
+
